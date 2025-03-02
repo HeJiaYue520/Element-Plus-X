@@ -24,7 +24,7 @@
 1. **克隆项目**：
 
    ```bash
-   git clone your-git-repository-url
+   git clone https://github.com/HeJiaYue520/Element-Plus-X.git
    cd element-plus-x
    ```
 
