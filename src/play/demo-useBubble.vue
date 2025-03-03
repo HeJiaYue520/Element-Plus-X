@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
 import Bubble from "@/components/Bubble/index.vue";
 import { Refresh, Search, Star, DocumentCopy } from "@element-plus/icons-vue";

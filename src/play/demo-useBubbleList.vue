@@ -64,7 +64,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { messageArr } from "./mock";
 import BubbleList from "@/components/BubbleList/index.vue";
 import { onMounted, ref } from "vue";

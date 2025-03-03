@@ -39,25 +39,26 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Bubble from "@/components/Bubble/index.vue";
 import { nextTick, ref, watch } from "vue";
+import type { BubbleProps } from "../Bubble/type";
+import type Typed from "typed.js";
+
+interface Props {
+  list: BubbleProps[];
+  maxHeight: string;
+}
 
 const emits = defineEmits(["onComplete"]);
-const props = defineProps({
-  list: {
-    type: Array,
-    required: true,
-  },
-  maxHeight: {
-    type: String,
-    default: "500px",
-  },
-});
+
+const props = withDefaults(defineProps<Props>(), {
+  maxHeight: "500px",
+})
 
 /* 在底部时候自动滚动 开始 */
 // 滚动容器的引用
-const scrollContainer = ref(null);
+const scrollContainer = ref<HTMLDivElement | null>(null);
 // 回复是否结束，只有回复结束，才会停止向底部滚动
 let wasOver = ref(false);
 // 上次滚动位置
@@ -87,17 +88,17 @@ watch(
 function scrollToTop() {
   nextTick(() => {
     // 自动滚动到最顶部
-    scrollContainer.value.scrollTop = 0;
+    scrollContainer.value!.scrollTop = 0;
   });
 }
 // 父组件的触发方法，不跟随打字器滚动，滚动底部
 function scrollToBottom() {
   nextTick(() => {
-    scrollContainer.value.scrollTop = scrollContainer.value.scrollHeight;
+    scrollContainer.value!.scrollTop = scrollContainer.value!.scrollHeight;
   });
 }
 // 父组件触发滚动到指定气泡框
-function scrollToBubble(index) {
+function scrollToBubble(index: number) {
   let doms = document.querySelectorAll(".el-bubble");
   if (doms && doms.length > 0 && scrollContainer.value && index < doms.length) {
     let secondItem = doms[index];
@@ -120,7 +121,7 @@ function scrollToBottomByTyping() {
       clearInterval(scrollTimer);
       wasOver.value = true;
       nextTick(() => {
-        scrollContainer.value.scrollTop = scrollContainer.value.scrollHeight;
+        scrollContainer.value!.scrollTop = scrollContainer.value!.scrollHeight;
       });
       return false;
     }
@@ -141,7 +142,7 @@ function scrollToBottomByTyping() {
       clearInterval(scrollTimer);
       wasOver.value = true;
       nextTick(() => {
-        scrollContainer.value.scrollTop = scrollContainer.value.scrollHeight;
+        scrollContainer.value!.scrollTop = scrollContainer.value!.scrollHeight;
       });
       return false;
     }
@@ -151,12 +152,12 @@ function scrollToBottomByTyping() {
       return false;
     }
     nextTick(() => {
-      scrollContainer.value.scrollTop = scrollContainer.value.scrollHeight;
+      scrollContainer.value!.scrollTop = scrollContainer.value!.scrollHeight;
     });
   }, 30);
 }
 // 打字机播放完成回调（终止自动向下滚动）
-function onCompleteFunc(self) {
+function onCompleteFunc(self: Typed) {
   emits("onComplete", self);
   wasOver.value = true;
 }

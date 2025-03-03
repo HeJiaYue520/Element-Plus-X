@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineEmits } from "vue";
 import { Brush } from "@element-plus/icons-vue";
 const emit = defineEmits(["clear"]);

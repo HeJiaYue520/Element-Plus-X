@@ -39,7 +39,7 @@
   </svg>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineProps, computed } from 'vue'
 
 // 定义 Props

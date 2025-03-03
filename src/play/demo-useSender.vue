@@ -82,7 +82,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import Sender from "@/components/Sender/index.vue";
 import { CircleClose, Link } from "@element-plus/icons-vue";

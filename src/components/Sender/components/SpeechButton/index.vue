@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Microphone } from "@element-plus/icons-vue";
 </script>
 

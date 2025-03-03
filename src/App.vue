@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import UseBubble from "@/play/demo-useBubble.vue";
 import UseBubbleList from "@/play/demo-useBubbleList.vue";
 import UseSender from "@/play/demo-useSender.vue";

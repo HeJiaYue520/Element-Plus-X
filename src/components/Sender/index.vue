@@ -85,7 +85,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   SendButton,
   LoadingButton,
@@ -95,63 +95,42 @@ import {
 } from "./components";
 import { defineModel, defineSlots, defineEmits, defineProps, ref } from "vue";
 
+interface Props {
+  placeholder?: string;
+  autosize?: {
+    minRows: number;
+    maxRows: number;
+  };
+  readOnly?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  clearable?: boolean;
+  allowSpeech?: boolean;
+  submitType?: "enter" | "shiftEnter";
+  headerAnimationTimer?: number;
+  inputWidth?: string;
+}
+
 const slots = defineSlots();
 const emits = defineEmits(["submit"]);
 // vue 3.4 新增的 defineModel 语法糖，用于定义 props 和 v-model 的双向绑定
 const value = defineModel("value", { type: String, default: "" });
-const props = defineProps({
-  placeholder: { type: String, default: "请输入内容" },
-  autosize: {
-    type: Object,
-    default: () => {
-      return {
-        minRows: 1,
-        maxRows: 6,
-      };
-    },
-  },
-  readOnly: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  clearable: {
-    type: Boolean,
-    default: false,
-  },
-  allowSpeech: {
-    type: Boolean,
-    default: false,
-  },
-  submitType: {
-    type: String,
-    default: "enter",
-    validator(value) {
-      return ["enter", "shiftEnter"].includes(value);
-    },
-  },
-  headerAnimationTimer: {
-    type: Number,
-    default: 300,
-  },
-  inputWidth: {
-    type: String,
-    default: "500px",
-  },
-});
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: "请输入内容",
+  autosize: ()=> ({
+    minRows: 1,
+    maxRows: 6,
+  }),
+  submitType: "enter",
+  headerAnimationTimer: 300,
+  inputWidth: "500px",
+})
 
 const senderRef = ref();
 const inputRef = ref();
 
 /* 内容容器聚焦 开始 */
-const onContentMouseDown = (e) => {
+const onContentMouseDown = (e: MouseEvent) => {
   // 点击容器后设置输入框的聚焦，会触发 &:focus-within 样式
   if (e.target !== senderRef.value.querySelector(`.el-textarea__inner`)) {
     e.preventDefault();
@@ -183,7 +162,7 @@ const closeHeader = () => {
 /* 头部显示隐藏 结束 */
 
 /* 使用浏览器自带的语音转文字功能 开始 */
-const recognition = ref(null);
+const recognition = ref<SpeechRecognition | null>(null);
 const speechLoading = ref(false);
 
 const startRecognition = () => {
@@ -192,7 +171,7 @@ const startRecognition = () => {
   }
   if ("webkitSpeechRecognition" in window) {
     recognition.value = new webkitSpeechRecognition();
-    recognition.value.continuous = true;
+    recognition.value!.continuous = true;
     recognition.value.interimResults = true;
     recognition.value.lang = "zh-CN";
     recognition.value.onresult = (event) => {
@@ -241,7 +220,7 @@ const clear = () => {
   inputRef.value.clear();
 };
 // 在这判断组合键的回车键 (目前支持两种模式)
-const handleKeyDown = (e) => {
+const handleKeyDown = (e: {target: HTMLTextAreaElement} & KeyboardEvent) => {
   if (props.readOnly) {
     return false;
   }
