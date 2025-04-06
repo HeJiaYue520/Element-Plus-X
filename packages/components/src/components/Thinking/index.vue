@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ThinkingStatus, ThoughtProps } from './types.ts'
+import type { ThinkingStatus, ThoughtProps } from './types'
 import { ArrowUpBold, CircleCloseFilled, Loading, Opportunity, SuccessFilled } from '@element-plus/icons-vue'
 
 const props = withDefaults(defineProps<ThoughtProps>(), {

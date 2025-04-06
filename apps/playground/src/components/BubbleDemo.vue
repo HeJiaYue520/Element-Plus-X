@@ -1,26 +1,19 @@
 <!-- home 首页-使用 Bubble 组件 -->
 <script setup lang="ts">
 import { DocumentCopy, Refresh, Search, Star } from '@element-plus/icons-vue'
+import { demoStr } from './str.ts'
 
 const avatar = ref(
   'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
 )
 const loading = ref(true)
 const content = ref('')
+const switchHighlight = ref(false)
 
 onMounted(() => {
   setTimeout(() => {
     setTimeout(() => {
-      content.value = `
-# 标题
-这是一个 Markdown 示例。
-- 列表项 1
-- 列表项 2
-**粗体文本** 和 *斜体文本*
-\`\`\`javascript
-console.log('Hello, world!');
-\`\`\`
-`.trim()
+      content.value = demoStr.trim()
       loading.value = false
     }, 500)
   }, 2000)
@@ -29,6 +22,12 @@ console.log('Hello, world!');
 
 <template>
   <div class="component-container">
+    <el-switch
+      v-model="switchHighlight"
+      size="large"
+      active-text="Shiki"
+      inactive-text="Prism"
+    />
     <div class="component-1">
       <Bubble
         placement="start"
@@ -41,6 +40,9 @@ console.log('Hello, world!');
           suffix: '💗',
         }"
         :is-markdown="true"
+        :code-high-light-options="{
+          type: switchHighlight ? 'Shiki' : 'Prism',
+        }"
       >
         <template #avatar>
           <el-avatar :size="32" :src="avatar" />
