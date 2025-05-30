@@ -2,8 +2,8 @@ import type PromptsSource from '@components/Prompts/index.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import PromptsCustomStyle from './CustomStyleDemo.vue';
 import Prompts from './index.vue';
-import { CustomStyleItems, mockPromptsItems } from './mock';
-import PromptsNesting from './WithChildrenDemo.vue';
+import { CustomStyleItems, mockPromptsItems, WithChildrenItems } from './mock';
+import PromptsWithChildren from './WithChildrenDemo.vue';
 
 const meta: Meta<typeof PromptsSource> = {
   title: 'Example/Prompts',
@@ -62,13 +62,37 @@ export const PromptsDefaultDemo: Story = {
   }
 };
 
+export const PromptsChildrenDemo: Story = {
+  args: {
+    title: '欢迎使用Element-Plus-X AI 助手',
+    wrap: true,
+    vertical: false,
+    items: WithChildrenItems
+  },
+  render: (args: any) => ({
+    components: {
+      PromptsWithChildren
+    },
+    setup() {
+      return { attrs: args };
+    },
+    template: `<PromptsWithChildren v-bind="attrs" />`
+  })
+};
+
 export const PromptsCustomStyleDemo: Story = {
   args: {
     title: '欢迎使用Element-Plus-X AI 助手',
     items: CustomStyleItems,
     wrap: true,
     vertical: false,
-    style: {}
+    style: {
+      width: '300px',
+      padding: '12px',
+      borderRadius: '8px',
+      background:
+        'linear-gradient(to bottom right, rgba(237, 43, 114, 0.9), rgba(223, 67, 62, 0.9)'
+    }
   },
   render: (args: any) => ({
     components: {
@@ -78,23 +102,5 @@ export const PromptsCustomStyleDemo: Story = {
       return { attrs: args };
     },
     template: `<PromptsCustomStyle v-bind="attrs" />`
-  })
-};
-
-export const PromptsNestingDemo: Story = {
-  args: {
-    title: '欢迎使用Element-Plus-X AI 助手',
-    wrap: true,
-    vertical: false,
-    style: {}
-  },
-  render: (args: any) => ({
-    components: {
-      PromptsNesting
-    },
-    setup() {
-      return { attrs: args };
-    },
-    template: `<PromptsNesting v-bind="attrs" />`
   })
 };

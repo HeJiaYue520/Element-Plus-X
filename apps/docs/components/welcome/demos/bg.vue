@@ -10,7 +10,9 @@ title: direction 属性
 import type { WelcomeProps } from 'vue-element-plus-x/types/Welcome';
 import { Refresh } from '@element-plus/icons-vue';
 
-const bgColor = ref('linear-gradient(97deg, rgba(90,196,255,0.12) 0%, rgba(174,136,255,0.12) 100%)');
+const bgColor = ref(
+  'linear-gradient(97deg, rgba(90,196,255,0.12) 0%, rgba(174,136,255,0.12) 100%)'
+);
 const value = ref<WelcomeProps['direction']>('ltr');
 
 // 生成随机的渐变颜色
@@ -32,17 +34,18 @@ function generateGradientColor(): string {
 </script>
 
 <template>
-  <div style="display: flex; flex-direction: column; gap: 12px;">
-    <div style="display: flex; gap: 12px; align-items: center;">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; gap: 12px; align-items: center">
       <el-button
         type="warning"
-        style="width: fit-content;"
+        style="width: fit-content"
         @click="bgColor = generateGradientColor()"
       >
         设置你喜欢的背景颜色 <el-icon><Refresh /></el-icon>
       </el-button>
 
-      <span>切换布局：</span> <el-switch v-model="value" active-value="ltr" inactive-value="rtl" />
+      <span>切换布局：</span>
+      <el-switch v-model="value" active-value="ltr" inactive-value="rtl" />
     </div>
 
     <Welcome
@@ -60,7 +63,7 @@ function generateGradientColor(): string {
 
     <Welcome
       :direction="value"
-      icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
+      icon="https://camo.githubusercontent.com/4ea7fdaabf101c16965c0bd3ead816c9d7726a59b06f0800eb7c9a30212d5a6a/68747470733a2f2f63646e2e656c656d656e742d706c75732d782e636f6d2f656c656d656e742d706c75732d782e706e67"
       title="欢迎使用 Element Plus X 💖"
       description="这是描述信息 ~"
       :style="{ background: bgColor }"
@@ -68,7 +71,7 @@ function generateGradientColor(): string {
 
     <Welcome
       :direction="value"
-      icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
+      icon="https://camo.githubusercontent.com/4ea7fdaabf101c16965c0bd3ead816c9d7726a59b06f0800eb7c9a30212d5a6a/68747470733a2f2f63646e2e656c656d656e742d706c75732d782e636f6d2f656c656d656e742d706c75732d782e706e67"
       title="欢迎使用 Element Plus X 💖"
       extra="副标题"
       description="这是描述信息 ~"
@@ -92,7 +95,7 @@ function generateGradientColor(): string {
 
     <Welcome
       :direction="value"
-      icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
+      icon="https://camo.githubusercontent.com/4ea7fdaabf101c16965c0bd3ead816c9d7726a59b06f0800eb7c9a30212d5a6a/68747470733a2f2f63646e2e656c656d656e742d706c75732d782e636f6d2f656c656d656e742d706c75732d782e706e67"
       variant="borderless"
       title="欢迎使用 Element Plus X 💖"
       description="这是描述信息 ~"
@@ -101,7 +104,7 @@ function generateGradientColor(): string {
 
     <Welcome
       :direction="value"
-      icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
+      icon="https://camo.githubusercontent.com/4ea7fdaabf101c16965c0bd3ead816c9d7726a59b06f0800eb7c9a30212d5a6a/68747470733a2f2f63646e2e656c656d656e742d706c75732d782e636f6d2f656c656d656e742d706c75732d782e706e67"
       variant="borderless"
       title="欢迎使用 Element Plus X 💖"
       extra="副标题"
@@ -111,5 +114,4 @@ function generateGradientColor(): string {
   </div>
 </template>
 
-<style scoped lang="less">
-</style>
+<style scoped lang="less"></style>

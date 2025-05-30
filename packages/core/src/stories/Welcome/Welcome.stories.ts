@@ -83,7 +83,7 @@ export const WelcomeDemo: Story = {
   args: {
     title: '欢迎使用Element-Plus-X AI 助手',
     description: '一起玩耍吧',
-    icon: 'https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp',
+    icon: 'https://camo.githubusercontent.com/4ea7fdaabf101c16965c0bd3ead816c9d7726a59b06f0800eb7c9a30212d5a6a/68747470733a2f2f63646e2e656c656d656e742d706c75732d782e636f6d2f656c656d656e742d706c75732d782e706e67',
     direction: 'ltr',
     variant: 'filled'
   }

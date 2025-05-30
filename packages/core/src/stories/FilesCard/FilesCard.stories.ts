@@ -1,9 +1,6 @@
 import type FilesCardSource from '@components/FilesCard/index.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { pick } from 'radash';
-import FilesCardCustomColor from './CustomColorDemo.vue';
 import FilesCardCustomStyle from './CustomStyleDemo.vue';
-import FilesCardImage from './ImageDemo.vue';
 import FilesCard from './index.vue';
 
 const meta: Meta<typeof FilesCardSource> = {
@@ -108,24 +105,36 @@ type Story = StoryObj<typeof meta>;
 
 export const FilesCardDemo: Story = {
   args: {
-    name: 'FilesCardDemo.png'
+    name: '自定义.doc',
+    fileSize: 6000,
+    iconSize: '60px',
+    iconColor: '#2767bc',
+    maxWidth: '300px',
+    errorTip: '上传失败',
+    imgVariant: 'rectangle',
+    imgPreview: true,
+    imgPreviewMask: true,
+    showDelIcon: true,
+    status: 'uploading',
+    percent: 30
   }
 };
 
-export const FilesCardImagesDemo: Story = {
-  render: args => ({
-    components: {
-      FilesCardImage
-    },
-    setup() {
-      const attrs = pick(args, ['fileSize'] as (keyof Story['args'])[]);
-      return { attrs };
-    },
-    template: `<FilesCardImage v-bind="attrs" />`
-  })
-};
-
 export const FilesCardCustomStyleDemo: Story = {
+  args: {
+    ...FilesCardDemo.args,
+    name: '自定义样式.doc',
+    style: {
+      'background-color': '#f0f9eb',
+      border: '2px solid #67c23a',
+      'border-radius': '20px'
+    },
+    hoverStyle: {
+      'box-shadow': '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
+      'border-color': 'red',
+      'background-color': 'rgba(255, 0, 0, 0.1)'
+    }
+  },
   render: args => ({
     components: {
       FilesCardCustomStyle
@@ -134,19 +143,5 @@ export const FilesCardCustomStyleDemo: Story = {
       return { attrs: args };
     },
     template: `<FilesCardCustomStyle v-bind="attrs" />`
-  })
-};
-export const FilesCardCustomColorDemo: Story = {
-  args: {
-    name: '我是文件名称可以自己修改'
-  },
-  render: args => ({
-    components: {
-      FilesCardCustomColor
-    },
-    setup() {
-      return { attrs: args };
-    },
-    template: `<FilesCardCustomColor v-bind="attrs" />`
   })
 };

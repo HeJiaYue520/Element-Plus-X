@@ -3,31 +3,12 @@ import { FilesCard } from '../../components';
 </script>
 
 <template>
-  <div style="display: flex; flex-direction: column; gap: 12px">
-    <FilesCard
-      v-bind="$attrs"
-      name="自定义style样式.xls"
-      style="
-        background-color: #f0f9eb;
-        border: 2px solid #67c23a;
-        border-radius: 20px;
-      "
-    />
-    <FilesCard
-      v-bind="$attrs"
-      name="自定义hoverStyle样式.xls"
-      style="
-        background-color: #f0f9eb;
-        border: 1px solid #67c23a;
-        border-radius: 20px;
-      "
-      :hover-style="{
-        'box-shadow': '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
-        'border-color': 'red',
-        'background-color': 'rgba(255, 0, 0, 0.1)'
-      }"
-    />
-  </div>
+  <FilesCard v-bind="$attrs" />
+  <br />
+  <FilesCard
+    v-bind="$attrs"
+    name="FilesCardDemo.png"
+    file-type="image"
+    thumb-url="https://camo.githubusercontent.com/4ea7fdaabf101c16965c0bd3ead816c9d7726a59b06f0800eb7c9a30212d5a6a/68747470733a2f2f63646e2e656c656d656e742d706c75732d782e636f6d2f656c656d656e742d706c75732d782e706e67"
+  />
 </template>
-
-<style scoped lang="less"></style>

@@ -78,3 +78,87 @@ export const CustomStyleItems: PromptsItemsProps[] = [
     }
   }
 ];
+
+export const WithChildrenItems: PromptsItemsProps[] = Array.from({
+  length: 3
+}).map((_, index) => ({
+  key: index,
+  label: `🐠 主标题 ${index}`,
+  description: `描述 ${index}`,
+  disabled: false,
+  itemStyle: {
+    width: `calc(100% / ${3} - 43px)`,
+    backgroundImage: `linear-gradient(137deg, #e5f4ff 0%, #efe7ff 100%)`
+  },
+  itemHoverStyle: {
+    cursor: 'unset'
+  },
+
+  children: [
+    {
+      key: `${index}-1`,
+      label: `🐛 子标题 ${index}-1`,
+      description: `描述 ${index}`,
+      disabled: false,
+      itemStyle: {
+        backgroundImage: `linear-gradient(137deg, #e5f4ff 0%, #efe7ff 100%)`,
+        border: '1px solid #FFF'
+      },
+      itemHoverStyle: {
+        cursor: 'unset'
+      },
+      children: [
+        {
+          key: `${index}-1-1`,
+          label: `🐛 孙子标题 ${index}-1-1`,
+          description: `描述 ${index}`,
+          disabled: false,
+          itemStyle: {
+            background: 'rgba(255,255,255,0.45)',
+            border: '1px solid #FFF'
+          }
+        },
+        {
+          key: `${index}-1-2`,
+          label: `🐛 孙子标题 ${index}-1-1`,
+          description: `描述 ${index}`,
+          disabled: false,
+          itemStyle: {
+            background: 'rgba(255,255,255,0.45)',
+            border: '1px solid #'
+          }
+        },
+        {
+          key: `${index}-1-3`,
+          label: `🐛 孙子标题 ${index}-1-1`,
+          description: `描述 ${index}`,
+          disabled: false,
+          itemStyle: {
+            background: 'rgba(255,255,255,0.45)',
+            border: '1px solid #FFF'
+          }
+        }
+      ]
+    },
+    {
+      key: `${index}-2`,
+      label: `🐛 子标题 ${index}-2`,
+      description: `描述 ${index}`,
+      disabled: false,
+      itemStyle: {
+        background: 'rgba(255,255,255,0.45)',
+        border: '1px solid #FFF'
+      }
+    },
+    {
+      key: `${index}-3`,
+      label: `🐛 子标题 ${index}-3`,
+      description: `描述 ${index}`,
+      disabled: false,
+      itemStyle: {
+        background: 'rgba(255,255,255,0.45)',
+        border: '1px solid #FFF'
+      }
+    }
+  ]
+}));
