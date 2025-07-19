@@ -4,7 +4,6 @@ import Theme from 'vitepress/theme';
 import { onMounted, ref } from 'vue';
 
 const menuOpen = ref(false);
-
 function toggleMenu() {
   menuOpen.value = !menuOpen.value;
 }
